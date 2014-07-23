@@ -10,7 +10,21 @@
         mc:Ignorable="d"
         >
     <Grid>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Files}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="283*" />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding NewFile}" />
+            <Button Grid.Column="1" Command="{Binding AddCommand}"  Content="Add a file"/>
+        </Grid>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Files}"
+                  >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding FileName, Mode=OneWay}" Header="File Name" />
                 <DataGridTemplateColumn Header="Local File Path">
@@ -20,11 +34,11 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridCheckBoxColumn Binding="{Binding Active}" Header="Out-of-the-box" />
+                <DataGridCheckBoxColumn Binding="{Binding Active, UpdateSourceTrigger=PropertyChanged}" Header="Out-of-the-box" />
                 <DataGridTemplateColumn Header="LTemplateh">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate DataType="{x:Type dgBox:File}">
-                            <CheckBox IsChecked="{Binding Active}" />
+                            <CheckBox IsChecked="{Binding Active, UpdateSourceTrigger=PropertyChanged}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
