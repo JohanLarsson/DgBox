@@ -19,7 +19,7 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBox Text="{Binding NewFile}" />
+            <TextBox Text="{Binding NewFile, UpdateSourceTrigger=PropertyChanged}" />
             <Button Grid.Column="1" Command="{Binding AddCommand}"  Content="Add a file"/>
         </Grid>
         <DataGrid Grid.Row="1" AutoGenerateColumns="False"
